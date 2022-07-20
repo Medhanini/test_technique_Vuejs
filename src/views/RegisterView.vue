@@ -1,13 +1,13 @@
 <template>
   <div >
-   <TheAuth :islongin="true" />
+   <TheAuth :islongin="false" />
   </div>
 </template>
 
 <script>
 
 export default {
-  name: 'HomeView',
+  name: 'RegisterView',
     components:{
       TheAuth:() => import('@/components/TheAuth.vue'),
     }
