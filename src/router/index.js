@@ -25,5 +25,29 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
-
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.secure)) {
+    // this route requires auth, check if logged in
+    // if not, redirect to login page.
+    if (store.state.auth.loggedIn == false) {
+      next({
+        path: '/about'
+      })
+    } else {
+      next()
+    }
+  } 
+  else if(to.matched.some(record => record.meta.guest)) {
+      if (store.state.auth.loggedIn == false) {
+          next()
+        } else {
+          next({
+              path: '/profile'
+            })
+        } 
+    }
+  else {
+    next() // make sure to always call next()!
+  }
+})
 export default router
