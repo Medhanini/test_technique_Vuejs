@@ -1,21 +1,22 @@
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
-    <button @click="performLogout()" > logout </button>
+    <div class="row" >
+      <div class="col" >
+        <TheUserInfo :data="user" />
+      </div>
+    </div>    
   </div>
 </template>
 <script>
+import { mapState } from 'vuex'
 export default {
-  methods: {
-     performLogout(){
-        this.$store.dispatch('performLogoutAction')
-        .then(res=>{
-        this.$router.push('/',res)
-        })
-        .catch(err=>{
-          console.log(err)
-        })
-      }
-  }
+  components:{
+      TheUserInfo:() => import('@/components/TheUserInfo.vue'),
+    },
+  computed: {
+    ...mapState({
+          user: state => state.auth.user,
+    })
+    },
 }
 </script>

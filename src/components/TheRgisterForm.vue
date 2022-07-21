@@ -44,7 +44,11 @@
             </li>
         </ul>
     </nav>
-    
+    <div class="p-t-20 float-right" >
+            <router-link to="/" >
+                Vous avez déjas un compte ?
+            </router-link>
+        </div>
   </div>
 </template>
 
@@ -53,8 +57,6 @@ export default {
     data() {
         return {
             currentStep: 0,
-            errors: [],
-            isError: false,
             form: {
                 login:'',
                 password:'',
@@ -69,7 +71,7 @@ export default {
     methods: {
         nextSept() {
             if(this.form.login && this.form.password)
-            {this.currentStep++,this.error= !this.error}
+            {this.currentStep++}
             if(!this.form.login){
             this.$notify({
                 group: 'foo',
@@ -93,17 +95,64 @@ export default {
             this.currentStep--
         },
         performRegister(){
-        this.isLoding = true,
-            this.$store.dispatch('performRegisterAction',{
-            name:this.form.name,
-            email:this.form.email,
-            password:this.form.password
-            }).then( res => {
-            this.$router.push('/about',res)
-            }).catch( err => {
-                console.log(err.message)
-                this.error = "There was error during Regestration process"
-            })
+            if(this.form.name && this.form.lastName && this.form.email && this.form.adress && this.form.phoneNumber)
+            {
+                
+                this.$store.dispatch('performRegisterAction',
+                this.form
+                ).then( res => {
+                this.$router.push('/about',res)
+                }).catch( err => {
+                    console.log(err.message)
+                    this.error = "There was error during Regestration process"
+                })
+
+            }
+            if(!this.form.name){
+            this.$notify({
+                group: 'foo',
+                title: 'le champ Nom est obligatoir',
+                message: 'le champ Nom est obligatoiry',
+                type: 'error',
+                duration: 2000,
+              });
+            }
+            if(!this.form.lastName){
+            this.$notify({
+                group: 'foo',
+                title: 'le champ Prénom est obligatoir',
+                message: 'le champ Prénom est obligatoiry',
+                type: 'error',
+                duration: 2000,
+              });
+            }
+            if(!this.form.email){
+                this.$notify({
+                group: 'foo',
+                title: 'le champ email est obligatoir',
+                message: 'le champ email est obligatoir',
+                type: 'error',
+                duration: 2000,
+              });
+            }
+            if(!this.form.adress){
+            this.$notify({
+                group: 'foo',
+                title: 'le champ Adresse est obligatoir',
+                message: 'le champ Adresse est obligatoiry',
+                type: 'error',
+                duration: 2000,
+              });
+            }
+            if(!this.form.phoneNumber){
+                this.$notify({
+                group: 'foo',
+                title: 'le champ Téléphone est obligatoir',
+                message: 'le champ Téléphone est obligatoir',
+                type: 'error',
+                duration: 2000,
+              });
+            }
         }
     }
 }

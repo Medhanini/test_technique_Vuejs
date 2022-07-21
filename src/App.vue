@@ -1,21 +1,17 @@
 <template>
-  <div id="app"><div class="container-fluid">
-    <div class="row flex-nowrap">
-        <div v-if="loggedIn" class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
-            <TheSideBar />
-        </div>
-        <div class="col ">
-            
-        <router-view/>
-        </div>
+  <div id="app">
+    <div  v-if="loggedIn" >
+      <TheNavBar />
+      <TheBreadCrumb />
     </div>
+    <router-view/>
 </div>
-  </div>
 </template>
 <script>
 export default {
   components:{
-TheSideBar:() => import('@/components/TheSideBar.vue'),
+  TheNavBar:() => import('@/components/TheNavBar.vue'),
+  TheBreadCrumb:() => import('@/components/TheBreadCrumb.vue'),
   },
   computed:{
       loggedIn(){

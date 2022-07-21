@@ -12,6 +12,11 @@
         <div class="p-t-10">
             <button class="btn btn--pill btn--green" type="submit" @click="Submit()" >Submit</button>
         </div>
+        <div class="p-t-20 float-right" >
+            <router-link to="/register" >
+                s'inscrire
+            </router-link>
+        </div>
   </div>
 </template>
 
