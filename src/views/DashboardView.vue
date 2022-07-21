@@ -1,12 +1,15 @@
 <template>
   <div>
-      <h1>helllo </h1>
+      <TheMounthChart />
   </div>
 </template>
 
 <script>
-export default {
 
+export default {
+components:{
+      TheMounthChart:() => import('@/components/TheMounthChart.vue'),
+    }
 }
 </script>
 

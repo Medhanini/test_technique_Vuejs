@@ -77,7 +77,7 @@
               </div>
               <div class="col-sm-9">
                 <p class="text-muted mb-0">
-                    {{ data.numberPhone }}
+                    {{ data.phoneNumber }}
                 </p>
               </div>
             </div>
