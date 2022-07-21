@@ -8,8 +8,6 @@ import store from './store'
 import VueAxios from 'vue-axios';
 import axios from 'axios';
 
-// import { Bar } from 'vue-chartjs';
-
 
 Vue.use(VueAxios, axios);
 Vue.use(Notifications)

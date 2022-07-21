@@ -56,8 +56,8 @@ export default {
   data() {
     return {
       chartData: {
-        labels: [ 'January', 'February', 'March' ],
-        datasets: [ { data: [40, 20, 12] } ]
+        labels: [ '2017', '2018', '2019' , '2020', '2021', '2022' ],
+        datasets: [ { data: [40, 20, 12, 40, 20, 12] } ]
       },
       chartOptions: {
         responsive: true

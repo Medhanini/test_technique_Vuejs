@@ -19,7 +19,7 @@ export default {
     actions:{
         performLoginAction({commit}, payload){
             return new Promise( (resolve, reject) => {
-                axios.post('http://127.0.0.1:8000/api/auth/login',{
+                axios.post('https://med-hanini.herokuapp.com/api/auth/login',{
                     email:payload.email,
                     password:payload.password
                     }).then(res =>{
@@ -35,7 +35,7 @@ export default {
         },
         performRegisterAction({commit}, payload){
             return new Promise( (resolve, reject) => {
-                axios.post('http://127.0.0.1:8000/api/auth/register',payload).then(res =>{
+                axios.post('https://med-hanini.herokuapp.com/api/auth/register',payload).then(res =>{
                         commit('SET_token', res.data.access_token)
                         commit('SET_user', res.data.user)
                         commit('SET_loggedIn', true)
@@ -48,7 +48,7 @@ export default {
         },
         performLogoutAction({state,commit}){
             return new Promise( (resolve, reject) => {
-                axios.post('http://127.0.0.1:8000/api/auth/logout',{
+                axios.post('https://med-hanini.herokuapp.com/api/auth/logout',{
                     token:state.token                    
                     }).then(res =>{
                         commit('SET_token', null)
@@ -64,7 +64,7 @@ export default {
         UpdateUserProfile({commit,state}, payload){
             return new Promise( (resolve, reject) => {
                 axios
-                .patch('http://127.0.0.1:8000/api/auth/update',{
+                .patch('https://med-hanini.herokuapp.com/api/auth/update',{
                     name:payload.name,
                     email:payload.email,
                     token:state.token
