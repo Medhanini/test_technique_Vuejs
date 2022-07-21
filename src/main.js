@@ -8,6 +8,10 @@ import store from './store'
 import VueAxios from 'vue-axios';
 import axios from 'axios';
 
+import { Bar } from 'vue-chartjs';
+import { Bar } from 'vue-chartjs/legacy';
+
+
 Vue.use(VueAxios, axios);
 Vue.use(Notifications)
 import 'bootstrap';
