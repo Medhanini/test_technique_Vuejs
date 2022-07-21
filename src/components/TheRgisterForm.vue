@@ -3,38 +3,36 @@
       <div class="p-t-10">
     <h2 class="title">Registration Info</h2>
       </div>
-    <form>
         <div v-if="currentStep == 0" >
             <div class="input-group">
-                <input class="input--style-3" type="text" v-model="form.login"  placeholder="Login" name="name">
+                <input class="input--style-3" type="text" v-model="form.login"  placeholder="Login">
             </div>
             <div class="input-group">
-                <input class="input--style-3" type="password" v-model="form.password"  placeholder="Password" name="birthday">
+                <input class="input--style-3" type="password" v-model="form.password"  placeholder="Password">
             </div>
         
         </div>
         <div v-if="currentStep == 1" >
             <div class="input-group">
-                <input class="input--style-3" type="text" v-model="form.firstName"  placeholder="Nom" name="name">
+                <input class="input--style-3" type="text" v-model="form.name"  placeholder="Nom">
             </div>
             <div class="input-group">
-                <input class="input--style-3" type="text" v-model="form.lastName"  placeholder="Prénom" name="name">
+                <input class="input--style-3" type="text" v-model="form.lastName"  placeholder="Prénom">
             </div>
             <div class="input-group">
-                <input class="input--style-3" type="text" v-model="form.email"  placeholder="Email" name="name">
+                <input class="input--style-3" type="email" v-model="form.email"  placeholder="Email">
             </div>
             <div class="input-group">
-                <input class="input--style-3" type="text" v-model="form.adress"  placeholder="Adresse" name="name">
+                <input class="input--style-3" type="text" v-model="form.adress"  placeholder="Adresse">
             </div>
             <div class="input-group">
-                <input class="input--style-3" type="text" v-model="form.phoneNumber"  placeholder="Téléphone" name="name">
+                <input class="input--style-3" type="text" v-model="form.phoneNumber"  placeholder="Téléphone">
             </div>
             <div class="p-t-10">
-                <button class="btn btn--pill btn--green" type="submit">Submit</button>
+                <button class="btn btn--pill btn--green" type="submit" @click="performRegister()">Submit</button>
             </div>
         </div>
        
-    </form>
 
     <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-end">
@@ -60,7 +58,7 @@ export default {
             form: {
                 login:'',
                 password:'',
-                firstName: '',
+                name: '',
                 lastName: '',
                 email: '',
                 adress: '',
@@ -94,6 +92,19 @@ export default {
         prevStep() {
             this.currentStep--
         },
+        performRegister(){
+        this.isLoding = true,
+            this.$store.dispatch('performRegisterAction',{
+            name:this.form.name,
+            email:this.form.email,
+            password:this.form.password
+            }).then( res => {
+            this.$router.push('/about',res)
+            }).catch( err => {
+                console.log(err.message)
+                this.error = "There was error during Regestration process"
+            })
+        }
     }
 }
 </script>
